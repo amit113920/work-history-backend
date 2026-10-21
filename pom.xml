@@ -49,6 +49,16 @@
     <artifactId>mysql-connector-j</artifactId>
     <scope>runtime</scope>
 </dependency>
+		<!-- Spring Boot Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- Spring Security LDAP Module -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
