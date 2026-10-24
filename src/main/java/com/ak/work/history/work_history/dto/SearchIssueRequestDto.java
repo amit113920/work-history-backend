@@ -1,23 +1,12 @@
 package com.ak.work.history.work_history.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class SearchIssueRequestDto {
 private String issue;
-
-public SearchIssueRequestDto(String issue) {
-	super();
-	this.issue = issue;
-}
-
-public SearchIssueRequestDto() {
-	super();
-}
-
-public String getIssue() {
-	return issue;
-}
-
-public void setIssue(String issue) {
-	this.issue = issue;
-}
-
 }
