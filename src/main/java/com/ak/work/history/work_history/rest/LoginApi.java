@@ -37,7 +37,7 @@ public class LoginApi {
                 logger.info("Logger : authentication "+authentication.isAuthenticated());
 
                 String token = jwtService.generateTokenByUserName(request.getUserId());
-                return ResponseEntity.ok("{token:}"+token);
+                return ResponseEntity.ok("{token:"+token+"}");
             } else {
                 return ResponseEntity.status(401).body("Invalid credentials");
             }
