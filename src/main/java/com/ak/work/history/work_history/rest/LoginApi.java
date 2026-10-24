@@ -1,5 +1,6 @@
 package com.ak.work.history.work_history.rest;
 
+import com.ak.work.history.work_history.dto.AuthResponse;
 import com.ak.work.history.work_history.dto.LoginRequestDto;
 import com.ak.work.history.work_history.service.jwt.JwtService;
 import org.slf4j.Logger;
@@ -37,7 +38,7 @@ public class LoginApi {
                 logger.info("Logger : authentication "+authentication.isAuthenticated());
 
                 String token = jwtService.generateTokenByUserName(request.getUserId());
-                return ResponseEntity.ok("{token:"+token+"}");
+                return ResponseEntity.ok(new AuthResponse(token));
             } else {
                 return ResponseEntity.status(401).body("Invalid credentials");
             }
