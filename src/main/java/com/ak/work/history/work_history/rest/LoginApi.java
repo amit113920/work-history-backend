@@ -1,5 +1,7 @@
 package com.ak.work.history.work_history.rest;
+
 import com.ak.work.history.work_history.dto.LoginRequestDto;
+import com.ak.work.history.work_history.service.jwt.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,12 @@ public class LoginApi {
     private static final Logger logger = LoggerFactory.getLogger(LoginApi.class);
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private  JwtService jwtService;
 
     @PostMapping("/login")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Void> login(@RequestBody LoginRequestDto request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDto request) {
         try {
             // Authenticate against the LDAP server configured in SecurityConfig
             Authentication authentication = authenticationManager.authenticate(
@@ -31,14 +35,17 @@ public class LoginApi {
             logger.info("Logger : request "+request.getUserId()+" "+request.getPassword());
             if (authentication.isAuthenticated()) {
                 logger.info("Logger : authentication "+authentication.isAuthenticated());
-                return new ResponseEntity<>(HttpStatus.OK);
+
+                String token = jwtService.generateTokenByUserName(request.getUserId());
+                return ResponseEntity.ok("{token:}"+token);
+            } else {
+                return ResponseEntity.status(401).body("Invalid credentials");
             }
         } catch (AuthenticationException e) {
             // Bad credentials or user not found in LDAP directory
             logger.info("Logger : exception "+e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        logger.info("Logger : returning unauthorised");
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
     }
 }
