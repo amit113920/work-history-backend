@@ -1,1 +1,3 @@
 
+access swagger from docker by nginx :- http://localhost:3000/work/swagger-ui/index.html
+access swagger from host inteij :- http://localhost:8085/swagger-ui/index.html#/login-api/login
