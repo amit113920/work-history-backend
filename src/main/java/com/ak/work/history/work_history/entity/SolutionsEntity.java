@@ -1,9 +1,6 @@
 package com.ak.work.history.work_history.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class SolutionsEntity {
@@ -11,7 +8,9 @@ public class SolutionsEntity {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Id
 	private String id;
+	@Lob
 	private String issue;
+	@Lob
 	private String solution;
 	
 	
@@ -51,5 +50,4 @@ public class SolutionsEntity {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 }
