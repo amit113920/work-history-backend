@@ -15,7 +15,8 @@ public class SearchIssueDao {
 	private SaveSolutionRepo saveSolutionRepo;
 	
 	public List<IssueDetailsDto> searchIssue(String request) {
-		
+		System.out.println("dao call for search==========");
+
 		return saveSolutionRepo.findByIssueContaining(request).stream().map(req-> IssueDetailMapper.solutionsEntityToDto(req)).toList();
 		
 		 
